@@ -1,16 +1,15 @@
 class Solution {
     public String solution(String phone_number) {
         StringBuilder sb = new StringBuilder();
-        int a=0;
-        for(int i =0;i<=phone_number.length()-4;i++){
+        for (int i = 0; i <= phone_number.length() - 4; i++) {
             sb.append('*');
-            a=i;
         }
-        for(int i =a;i<a+4;i++){
-        sb.append(phone_number.charAt(i));
+        for (int i = phone_number.length() - 4; i < phone_number.length(); i++) {
+            sb.append(phone_number.charAt(i));
         }
-        if(sb.charAt(0)=='*')
-            sb.delete(0,1);
+        if (sb.toString().startsWith("*")) {
+            sb.deleteCharAt(0);
+        }
         return sb.toString();
     }
 }
