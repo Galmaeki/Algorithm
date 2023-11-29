@@ -1,15 +1,14 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
-    // 1260번 - DFS와 BFS
+    //1260번 - DFS와 BFS
+    //인접 리스트 풀이
     static StringBuilder sb = new StringBuilder();
     static int n, m, v;
-    static int[][] adj;
+    static ArrayList<Integer>[] adj;
     static boolean[] visit;
 
     public static void main(String[] args) throws IOException {
@@ -18,14 +17,22 @@ public class Main {
         n = Integer.parseInt(st.nextToken());// 정점의 개수
         m = Integer.parseInt(st.nextToken());
         v = Integer.parseInt(st.nextToken());
-        adj = new int[n + 1][n + 1];
+        
+        adj = new ArrayList[n+1];
+        for (int i = 1; i <= n; i++) {
+            adj[i]= new ArrayList<>();
+        }
 
         for (int i = 0; i < m; i++) {
             StringTokenizer st1 = new StringTokenizer(br.readLine());
             int x = Integer.parseInt(st1.nextToken());
             int y = Integer.parseInt(st1.nextToken());
-            adj[x][y] = 1;
-            adj[y][x] = 1;
+            adj[x].add(y);
+            adj[y].add(x);
+        }
+
+        for (int i = 1; i <=n; i++) {
+            Collections.sort(adj[i]);
         }
 
         visit = new boolean[n + 1];
@@ -40,9 +47,8 @@ public class Main {
     private static void dfs(int x) {
         visit[x] = true;// X를 방문함
         sb.append(x).append(" ");
-        for (int y = 1; y <= n; y++) {
-            if (adj[x][y] == 0) continue;// 간선 없음
-            if (visit[y]) continue;// 이미 방문함
+        for (int y : adj[x]){
+            if(visit[y]) continue;
             dfs(y);
         }
     }
@@ -56,8 +62,7 @@ public class Main {
         while (!que.isEmpty()) {// 큐가 빌때까지 반복
             x = que.poll();// 반복문에 들어와서 x를 제거
             sb.append(x).append(" ");
-            for (int y = 1; y <= n; y++) {
-                if (adj[x][y] == 0) continue;// 간선 없음
+            for (int y : adj[x]) {
                 if (visit[y]) continue;// 이미 방문함
 
                 que.add(y);// 방문한 적 없는 정점을 큐에 추가
