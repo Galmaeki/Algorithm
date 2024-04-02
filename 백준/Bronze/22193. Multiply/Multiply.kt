@@ -1,6 +1,8 @@
+import java.math.BigInteger
+
 fun main(){
     readln()
-    var a = readln().toLong()
-    var b = readln().toLong()
-    println(a*b)
+    var a = BigInteger(readln())
+    var b = BigInteger(readln())
+    println(a.multiply(b))
 }
