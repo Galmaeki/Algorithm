@@ -1,6 +1,7 @@
 import java.util.Arrays;
 
 class Solution {
+
     public int solution(int distance, int[] rocks, int n) {
         int answer = 0;
 
@@ -21,16 +22,16 @@ class Solution {
                     start = rocks[i];
                 }
             }
-            
-                        if (distance - start < mid) {
+
+            if (distance - start < mid) {
                 delete++;
             }
 
             if (delete > n) {
-                r = mid-1;
+                r = mid - 1;
             } else {
                 answer = mid;
-                l = mid+1;
+                l = mid + 1;
             }
 
         }
