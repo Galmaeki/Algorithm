@@ -9,7 +9,7 @@ class Solution {
             pQ.add(i);
             if (n < 0) {
                 if (k > 0) {
-                    k--;
+                   k--;
                     n += pQ.poll();
                 } else {
                     break;
