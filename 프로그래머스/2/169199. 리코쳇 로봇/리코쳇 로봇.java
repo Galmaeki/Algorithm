@@ -10,16 +10,17 @@ class Solution {
         int answer = 0;
         int[][] dir = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
         Node start = null;
-        Node goal = null;
+        
         arr = new char[board.length][board[0].length()];
         visit = new boolean[board.length][board[0].length()];
+        
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length(); j++) {
                 char c = board[i].charAt(j);
                 arr[i][j] = c;
-                if (c == 'R') {
+                
+                if (c == 'R') 
                     start = new Node(i, j, 1);
-                }
             }
         }
 
@@ -50,11 +51,6 @@ class Solution {
                 if (arr[dx][dy] == 'G') {
                     return x.c;
                 }
-
-                if(dx==x.x&&dy==x.y){
-                    continue;
-                }
-
 
                 if (!visit[dx][dy])
                     qu.add(new Node(dx, dy, x.c + 1));
