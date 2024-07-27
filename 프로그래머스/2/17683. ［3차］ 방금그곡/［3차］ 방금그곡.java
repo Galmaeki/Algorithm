@@ -1,5 +1,3 @@
-
-
 class Solution {
     public String solution(String m, String[] musicinfos) {
         String answer = "(None)";
@@ -40,12 +38,12 @@ class Solution {
 
      String convert(String str){
         return str
-            .replaceAll("C#","c")
-            .replaceAll("D#","d")
-            .replaceAll("F#","f")
-            .replaceAll("G#","g")
-            .replaceAll("B#","b")
-            .replaceAll("A#","a");
+            .replace("C#","c")
+            .replace("D#","d")
+            .replace("F#","f")
+            .replace("G#","g")
+            .replace("B#","b")
+            .replace("A#","a");
     }
 
     int getTime(String start, String end){
