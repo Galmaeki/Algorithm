@@ -8,8 +8,8 @@ class Solution {
         int maxTime = 0;
 
         for(String info : musicinfos){
-            Music music = new Music(info, m.length());
-            if((music.time >= m.length()||maxTime == 0) && music.melody.contains(targetMusic)){
+            Music music = new Music(info);
+            if(music.melody.contains(targetMusic)){
                 if(music.time > maxTime){
                     maxTime = music.time;
                     answer = music.title;
@@ -25,7 +25,7 @@ class Solution {
         String title;
         String melody;
 
-        public Music(String info, int targetTime) {
+        public Music(String info) {
             String[] origin = info.split(",");
             String originMelody = convert(origin[3]);
             time = getTime(origin[0],origin[1]);
