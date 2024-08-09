@@ -1,9 +1,8 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 class Solution {
-
     HashMap<String, Node> hm;
-
     public int[] solution(String[] enroll, String[] referral, String[] seller, int[] amount) {
         hm = new HashMap<>();
         hm.put("CENTER", new Node());
@@ -13,16 +12,14 @@ class Solution {
         }
 
         for (int i = 0; i < referral.length; i++) {
-            if (referral[i].equals("-")) {
-                continue;
-            }
+            if(referral[i].equals("-")) continue;
             Node node = hm.get(enroll[i]);
             node.mother = referral[i];
         }
 
         for (int i = 0; i < seller.length; i++) {
             Node node = hm.get(seller[i]);
-            node.earnMoney(amount[i] * 100);
+            node.earnMoney(amount[i]*100);
         }
 
         for (int i = 0; i < enroll.length; i++) {
@@ -42,14 +39,17 @@ class Solution {
             mother = "CENTER";
         }
 
-        void earnMoney(int earnMoney) {
+        void earnMoney(int earnMoney){
             int motherMoney = (int) (earnMoney * 0.1);
-            this.money += earnMoney - motherMoney;
-
-            if (motherMoney >= 1 && hm.containsKey(mother)) {
-                Node node = hm.get(mother);
-                node.earnMoney(motherMoney);
+            if(motherMoney<1) {
+                money += earnMoney;
+                return;
+            }else{
+                money +=  (earnMoney - motherMoney);
             }
+            if(!hm.containsKey(mother)) return;
+            Node node = hm.get(mother);
+            node.earnMoney(motherMoney);
         }
     }
 }
