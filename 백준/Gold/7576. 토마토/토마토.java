@@ -15,8 +15,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Queue<Node> qu = new LinkedList<>();
-        int day = 0;
-        boolean flag = false;
+        int day = -1;
 
         StringTokenizer cr = new StringTokenizer(br.readLine());
 
@@ -57,14 +56,13 @@ public class Main {
         for (boolean[] bs : visit) {
             for (boolean b : bs) {
                 if (!b) {
-                    flag = true;
+                    day = -1;
                     break;
                 }
             }
         }
 
-        if(!flag) System.out.println(day);
-        else System.out.println(-1);
+        System.out.println(day);
     }
 
     static class Node {
