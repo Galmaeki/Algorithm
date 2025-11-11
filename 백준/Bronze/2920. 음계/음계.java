@@ -1,41 +1,30 @@
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] str = br.readLine().split(" ");
-        int number;
-        if (Integer.parseInt(str[0]) == 1) {
-            number = 1;
-            System.out.println(ascending(number,str));
-        } else if (Integer.parseInt(str[0]) == 8) {
-            number = 8;
-            System.out.println(descending(number,str));
-        } else{
-            System.out.println("mixed");
-        }
-        for (int i = 0; i < 8; i++) {
+boolean flag = false;
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        }
-    }
+        int n = Integer.parseInt(st.nextToken());
 
-    private static String descending(int number, String[] str) {
-        for (int i = 0; i < 8; i++) {
-            if(Integer.parseInt(str[i]) != number){
-                return "mixed";
+        if(n==1){
+            for (int i = 0; i < 7; i++) {
+                int x = Integer.parseInt(st.nextToken());
+                if(x!=i+2) flag = true;
             }
-            number--;
-        }
-        return "descending";
-    }
 
-    private static String ascending(int number, String[] str) {
-        for (int i = 0; i < 8; i++) {
-            if(Integer.parseInt(str[i]) != number){
-                return "mixed";
+            System.out.println(flag?"mixed":"ascending");
+        }else if(n==8){
+            for (int i = 0; i < 7; i++) {
+                int x = Integer.parseInt(st.nextToken());
+                if(x!=7-i) flag = true;
             }
-            number++;
+
+            System.out.println(flag?"mixed":"descending");
         }
-        return "ascending";
+        else System.out.println("mixed");
     }
 }
