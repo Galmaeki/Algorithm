@@ -1,31 +1,29 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-    static StringBuilder sb = new StringBuilder();
-    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
     public static void main(String[] args) throws IOException {
-        int count = Integer.parseInt(br.readLine());
-        String arr[] = new String[count];
-        for (int i = 0; i < count; i++) {
-            arr[i]= br.readLine();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int n = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < n; i++) {
+            char[] ch = br.readLine().toCharArray();
+            int p = 0,tot = 0;
+            for (char c : ch) {
+                if(c=='O'){
+                    p+=1;
+                    tot+=p;
+                }
+                else p = 0;
+            }
+            sb.append(tot).append("\n");
         }
 
-        for (int i = 0; i < count; i++) {
-            int score=1;
-            int result =0;
-            for (int j = 0; j < arr[i].length(); j++) {
-                if(arr[i].charAt(j)=='O'){
-                    result+=score;
-                    score++;
-                } else {
-                    score=1;
-                }
-            }
-            System.out.println(result);
-        }
+        System.out.println(sb);
     }
 }
