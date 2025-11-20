@@ -1,35 +1,34 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-    static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        boolean[] era = new boolean[1001];
+        int ans = 0;
 
-        int a=0;
+        era[0] = true;
+        era[1] = true;
 
-        boolean[] arr = new boolean[1001];
+        br.readLine();
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        arr[0]=true;
-        arr[1]=true;
+        for (int i = 2; i * i < 1001; i++) {
+            if (era[i]) continue;
 
-        for (int i = 2; i * i <= 1000; i++) {
-            if(arr[i])
-                continue;
-            for (int j = i * i; j <= 1000; j += i) {
-                arr[j]=true;
+            for (int j = i*i; j < 1001; j += i) {
+                era[j] = true;
             }
         }
 
-        int count = Integer.parseInt(br.readLine());
-        StringTokenizer st =new StringTokenizer(br.readLine());
-
-        for (int i = 0; i < count; i++) {
-            if(!arr[Integer.parseInt(st.nextToken())])
-                a++;
+        while (st.hasMoreTokens()){
+            int x = Integer.parseInt(st.nextToken());
+            if(!era[x]) ans++;
         }
 
-
-        System.out.println(a);
+        System.out.println(ans);
     }
 }
+
